@@ -1,0 +1,93 @@
+/*
+ * Size and placement for the plate thumbnail. The link and its text are the theme's to
+ * style; all this file does is stop the picture being squashed and keep it to a size
+ * that suits a cart row.
+ */
+
+.zctz-np-thumb {
+	display: inline-block;
+	line-height: 0;
+	max-width: 100%;
+}
+
+.zctz-np-thumb__img {
+	display: block;
+	width: auto;
+	max-width: 100%;
+	height: auto;
+	max-height: 64px;
+}
+
+/*
+ * WooCommerce's own cart stylesheet sets table.cart img to 32px wide, meaning the
+ * product thumbnail column. It catches this image too and squashes the plate to a
+ * sliver, so the rule is restated at a specificity that beats it rather than left to
+ * load order.
+ */
+.woocommerce .zctz-np-thumb .zctz-np-thumb__img,
+.woocommerce-page .zctz-np-thumb .zctz-np-thumb__img {
+	width: auto;
+	max-width: 100%;
+	height: auto;
+	max-height: 64px;
+}
+
+.zctz-np-thumb__label {
+	display: block;
+	margin: 0.4em 0 0;
+}
+
+.zctz-np-thumb-wrap {
+	margin: 0.5em 0 0;
+}
+
+/*
+ * In the Cart and Checkout blocks the plate is the line item's picture, and WooCommerce
+ * reserves a square slot for it - right for a product photo, and a 520 mm plate in 80px
+ * is 17px tall, so the registration cannot be read. The slot is widened only where our
+ * own image sits, matched on the query argument that serves it, so every other product
+ * in the basket keeps WooCommerce's layout untouched.
+ *
+ * The two places need different numbers. A cart row is the page width, so it can spare
+ * 168px. The checkout's order summary is a narrow column and its slot is a shrinking
+ * flex item, which is why it needs flex-shrink and a smaller figure: left to shrink it
+ * came out 44px wide.
+ *
+ * Browsers without :has() keep WooCommerce's size, which is the behaviour this replaces.
+ */
+.wc-block-cart-item__image:has(img[src*="zctz_np_plate"]) {
+	width: 168px;
+	max-width: 40%;
+}
+
+.wc-block-components-order-summary-item__image:has(img[src*="zctz_np_plate"]) {
+	width: 120px;
+	max-width: 45%;
+	flex-shrink: 0;
+}
+
+/*
+ * max-width as well as width: WooCommerce caps the order summary's image at 48px that
+ * way, and a cap beats a width, so widening only the slot left a 120px box holding a
+ * 48px picture.
+ */
+.wc-block-cart-item__image:has(img[src*="zctz_np_plate"]) img,
+.wc-block-components-order-summary-item__image:has(img[src*="zctz_np_plate"]) img {
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+}
+
+/*
+ * On a phone WooCommerce lays the cart row out as a grid with an 80px image track and
+ * pins the picture to 32px inside it, which makes the plate a smear. Filling the track
+ * is the whole of what can be had here without rewriting their responsive grid, and a
+ * rewritten grid is what breaks on their next release. 80px it is; the registration is
+ * spelled out in the line's details beside it.
+ */
+@media (max-width: 480px) {
+	.wc-block-cart-item__image:has(img[src*="zctz_np_plate"]) {
+		width: 100%;
+		max-width: 100%;
+	}
+}

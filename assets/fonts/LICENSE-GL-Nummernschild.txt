@@ -1,0 +1,47 @@
+GL-Nummernschild-Mtl
+====================
+
+Bundled file: GL-Nummernschild-Mtl.woff
+Foundry:      Gutenberg Labo - http://gutenberg.osdn.jp/
+Version:      2.018
+
+Every line below is quoted verbatim from the font file's own name table, which is the
+authority for how this font may be used. Nothing here is a paraphrase.
+
+
+License Description (name ID 13)
+--------------------------------
+
+	These fonts are free softwares. Unlimited permission is granted to use, copy, and
+	distribute it, with or without modification, either commercially and
+	noncommercially. THESE FONTS ARE PROVIDED "AS IS" WITHOUT WARRANTY.
+
+
+Copyright (name ID 0)
+---------------------
+
+	(C)2009-2018 Gutenberg Labo, all rights reserved. "FE-Mittelschrift" designed by
+	Karlgeorg Hoefer. We refered to "FZV - Anlange 4"
+	(http://bundesrecht.juris.de/fzv/anlage_4_62.html ,
+	http://www.stvzo.de/stvzo/fzv/anlange_4.htm) and image file from Wikipedia Commons
+	(http://commons.wikimedia.org/wiki/File:FE-Schrift.svg)
+
+
+Why this font is redistributed with the plugin
+----------------------------------------------
+
+A German plate has to be set in FE-Schrift; the typeface is part of the specification,
+not a styling choice. An all-permissive grant of the kind quoted above is what makes
+redistribution possible, and this is the only plate face found under one. Faces for
+other countries, and FE-Engschrift for the longest German registrations, are not
+bundled for exactly that reason - they are added by the merchant through the
+zctz_np_profile_faces filter, from a file they are licensed to use.
+
+The grant above permits commercial use, modification and redistribution without
+condition, which is compatible with this plugin's GPL-2.0-or-later licence. The font
+remains the copyright of Gutenberg Labo and is not covered by that licence.
+
+To re-check this for yourself, read the font's name table directly rather than trusting
+this file:
+
+	php tools/font-metrics.php assets/fonts/GL-Nummernschild-Mtl.woff

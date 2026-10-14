@@ -1,0 +1,180 @@
+/*
+ * Arrangement and size only.
+ *
+ * Inputs, labels, radios and the disclosure markers are left to the theme: no colours,
+ * no borders on controls, no padding or type sizes on them. A plugin that paints its
+ * own controls matches exactly one theme and stops matching that one the day the shop
+ * is redesigned. What this file does own is where things sit and how wide they get,
+ * which no theme can know.
+ */
+
+.zctz-np {
+	margin: 0 0 1.5em;
+}
+
+.zctz-np__preview {
+	margin: 0 0 1em;
+}
+
+/*
+ * The plate is drawn at its true millimetre size, so it is capped rather than left to
+ * fill whatever column it lands in: a 520 mm plate stretched across a wide page reads
+ * as a banner, not a number plate.
+ */
+.zctz-np__preview svg {
+	display: block;
+	width: 100%;
+	max-width: 520px;
+	height: auto;
+}
+
+.zctz-np__errors:empty,
+.zctz-np__price:empty {
+	display: none;
+}
+
+.zctz-np__errors,
+.zctz-np__price {
+	margin: 0 0 1em;
+}
+
+.zctz-np__group {
+	margin: 0 0 1.1em;
+	padding: 0;
+	border: 0;
+	min-width: 0;
+}
+
+.zctz-np__legend {
+	padding: 0;
+	margin: 0 0 0.5em;
+}
+
+.zctz-np__sr-only,
+.zctz-np__legend--hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	white-space: nowrap;
+	border: 0;
+}
+
+.zctz-np__options {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5em 1.4em;
+}
+
+.zctz-np__option {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4em;
+}
+
+.zctz-np__option[hidden] {
+	display: none;
+}
+
+.zctz-np__registration {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 0.75em;
+	margin: 0 0 1em;
+}
+
+.zctz-np__field {
+	display: flex;
+	flex-direction: column;
+	gap: 0.4em;
+	margin: 0;
+}
+
+/*
+ * Width so the three fields share the row evenly, and upper case because a German
+ * registration is upper case - the server stores it that way whatever is typed, and
+ * this keeps the field agreeing with the plate above it.
+ */
+.zctz-np__field input {
+	width: 100%;
+	text-transform: uppercase;
+}
+
+.zctz-np.is-invalid .zctz-np__preview svg {
+	opacity: 0.45;
+}
+
+/*
+ * Studio sizes itself against its own column, not the window. This block is dropped
+ * into whatever width a theme gives it; on the theme it was built against that is
+ * about 600 px inside a 1400 px window, where a width media query would have kept two
+ * columns of 290 px and made the plate unreadable.
+ */
+.zctz-np--studio {
+	container-type: inline-size;
+}
+
+.zctz-np__split {
+	display: grid;
+	grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+	gap: 1.75em;
+	align-items: start;
+}
+
+@container (max-width: 680px) {
+	.zctz-np__split {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+/* Where container queries are unsupported, the window width is the best guess left. */
+@supports not (container-type: inline-size) {
+	@media (max-width: 1100px) {
+		.zctz-np__split {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
+}
+
+.zctz-np--studio .zctz-np__preview {
+	margin: 0;
+}
+
+.zctz-np--studio .zctz-np__errors,
+.zctz-np--studio .zctz-np__price {
+	margin: 1em 0 0;
+}
+
+.zctz-np--studio .zctz-np__registration {
+	margin-bottom: 0;
+}
+
+/*
+ * The steps need some edge to read as separate steps. It is drawn from the theme's own
+ * text colour rather than a grey of ours, so it sits correctly on a light or a dark
+ * theme; browsers without color-mix get the plain text colour, which is heavier but
+ * never wrong.
+ */
+.zctz-np__step {
+	margin: 0 0 0.6em;
+	border: 1px solid currentColor;
+	border-color: color-mix(in srgb, currentColor 22%, transparent);
+}
+
+.zctz-np__step-summary {
+	padding: 0.7em 0.9em;
+	cursor: pointer;
+}
+
+.zctz-np__step-body {
+	padding: 0 0.9em 0.9em;
+}
+
+.zctz-np__step-body .zctz-np__group:last-child,
+.zctz-np__step-body .zctz-np__registration {
+	margin-bottom: 0;
+}

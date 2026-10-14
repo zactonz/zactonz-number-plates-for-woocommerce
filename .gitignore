@@ -1,0 +1,5 @@
+dist/
+.DS_Store
+
+# WordPress.org listing assets: kept out of the public repo on purpose.
+.wporg/
